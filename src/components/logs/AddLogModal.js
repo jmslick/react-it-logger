@@ -21,8 +21,6 @@ const AddLogModal = ({ addLog }) => {
         date: new Date()
       };
 
-      //addLog(newLog);
-
       M.toast({ html: `Log added by ${tech}` });
 
       // Clear Fields
@@ -45,7 +43,6 @@ const AddLogModal = ({ addLog }) => {
               name='message'
               value={message}
               onChange={e => setMessage(e.target.value)}
-              b
             />
             <label htmlFor='message' className='active'>
               Log Message
