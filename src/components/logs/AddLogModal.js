@@ -113,4 +113,5 @@ const modalStyle = {
 //export default AddLogModal;
 
 // not bringing in any state, so param 1 null
+// addLog is the action
 export default connect(null, { addLog })(AddLogModal);

@@ -11,6 +11,11 @@ import {
 } from './types';
 
 /**
+ * Defining Actions and Redux State Management
+ * Create the action, handle it in educer, add it to the component.
+ */
+
+/**
  * If make an asynchronous call to back end, that's where redux thunk comes in.
  * Instead of just returning an object we can return a function and that function
  * gets passed in a dispatch method that we can use to then dispatch to our reducer.
