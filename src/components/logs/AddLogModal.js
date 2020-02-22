@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TechSelectOptions from '../techs/TechSelectOptions';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -14,12 +14,16 @@ const AddLogModal = ({ addLog }) => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
+      // New Log object
       const newLog = {
         message,
         attention,
         tech,
         date: new Date()
       };
+
+      // Call Redux action
+      addLog(newLog);
 
       M.toast({ html: `Log added by ${tech}` });
 
@@ -106,5 +110,7 @@ const modalStyle = {
   height: '75%'
 };
 
-export default AddLogModal;
-//export default connect(null, { addLog })(AddLogModal);
+//export default AddLogModal;
+
+// not bringing in any state, so param 1 null
+export default connect(null, { addLog })(AddLogModal);
