@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
-import TechSelectOptions from '../techs/TechSelectOptions';
-// import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { addLog } from '../../actions/logActions';
+import { connect } from 'react-redux';
+import { updateLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
+//import TechSelectOptions from '../techs/TechSelectOptions';
 
-const EditLogModal = ({ addLog }) => {
+const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+
+  useEffect(() => {
+    /**
+     * current log is null by default unless click the log item's title.
+     */
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+    // current is passed as a dependency
+  }, [current]);
 
   const onSubmit = () => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
-      const newLog = {
+      const updLog = {
+        id: current.id,
         message,
         attention,
         tech,
         date: new Date()
       };
 
-      M.toast({ html: `Log added by ${tech}` });
+      updateLog(updLog);
+      M.toast({ html: `Log updated by ${tech}` });
 
       // Clear Fields
       setMessage('');
@@ -44,9 +58,6 @@ const EditLogModal = ({ addLog }) => {
               value={message}
               onChange={e => setMessage(e.target.value)}
             />
-            <label htmlFor='message' className='active'>
-              Log Message
-            </label>
           </div>
         </div>
 
@@ -98,7 +109,8 @@ const EditLogModal = ({ addLog }) => {
 };
 
 EditLogModal.propTypes = {
-  addLog: PropTypes.func.isRequired
+  current: PropTypes.object,
+  updateLog: PropTypes.func.isRequired
 };
 
 const modalStyle = {
@@ -106,5 +118,10 @@ const modalStyle = {
   height: '75%'
 };
 
-export default EditLogModal;
-//export default connect(null, { addLog })(AddLogModal);
+// mapStateToProps: bring in state to fill form with selected log data
+const mapStateToProps = state => ({
+  current: state.log.current
+});
+
+// updateLog is the action
+export default connect(mapStateToProps, { updateLog })(EditLogModal);

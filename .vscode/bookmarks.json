@@ -6,6 +6,26 @@
 				"line": 91,
 				"column": 0,
 				"label": ""
+			},
+			{
+				"line": 113,
+				"column": 51,
+				"label": ""
+			},
+			{
+				"line": 161,
+				"column": 34,
+				"label": ""
+			}
+		]
+	},
+	{
+		"path": "$ROOTPATH$\\src\\components\\logs\\LogItem.js",
+		"bookmarks": [
+			{
+				"line": 17,
+				"column": 10,
+				"label": ""
 			}
 		]
 	}

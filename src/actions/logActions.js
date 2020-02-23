@@ -110,6 +110,7 @@ export const deleteLog = id => async dispatch => {
 };
 
 // Update log on server
+// prop log is the updated log object
 export const updateLog = log => async dispatch => {
   try {
     setLoading();
@@ -122,6 +123,7 @@ export const updateLog = log => async dispatch => {
       }
     });
 
+    // get data and dispatch it
     const data = await res.json();
 
     dispatch({
@@ -158,6 +160,7 @@ export const searchLogs = text => async dispatch => {
 
 // Set current log
 export const setCurrent = log => {
+  console.log('set current');
   return {
     type: SET_CURRENT,
     payload: log
@@ -168,6 +171,7 @@ export const setCurrent = log => {
 export const clearCurrent = () => {
   return {
     type: CLEAR_CURRENT
+    // no payload: setting log to null
   };
 };
 

@@ -1,11 +1,11 @@
 {
   "logs": [
     {
-      "message": "New log entry",
-      "attention": true,
+      "id": 1,
+      "message": "Updated: New log entry again",
+      "attention": false,
       "tech": "John Doe",
-      "date": "2020-02-22T18:07:01.418Z",
-      "id": 1
+      "date": "2020-02-23T03:13:21.116Z"
     },
     {
       "message": "Log entry 2",

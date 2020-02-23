@@ -40,6 +40,8 @@ export default (state = initialState, action) => {
     case UPDATE_LOG:
       return {
         ...state,
+        // for log item in logs, if log.id is same as in payload return payload
+        // else return the unedited log item
         logs: state.logs.map(log =>
           log.id === action.payload.id ? action.payload : log
         )
