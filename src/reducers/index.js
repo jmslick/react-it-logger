@@ -1,6 +1,7 @@
-//
-// Redux Root Reducer
-//
+/**
+ * Redux Root Reducer
+ * Combines reducers for large applications
+ */
 import { combineReducers } from 'redux';
 import logReducer from './logReducer';
 import techReducer from './techReducer';
