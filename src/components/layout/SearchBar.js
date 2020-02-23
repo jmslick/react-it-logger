@@ -1,10 +1,17 @@
-import React from 'react';
+/**
+ * Uses json-server to query logs
+ */
+import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { searchLogs } from '../../actions/logActions';
 
-const SearchBar = () => {
-  //const text = useRef('');
+const SearchBar = ({ searchLogs }) => {
+  // useRef hook
+  const text = useRef('');
 
   const onChange = e => {
-    //searchLogs(text.current.value);
+    searchLogs(text.current.value);
   };
 
   return (
@@ -16,7 +23,7 @@ const SearchBar = () => {
               id='search'
               type='search'
               placeholder='Search Logs..'
-              // ref={text}
+              ref={text}
               onChange={onChange}
             />
             <label className='label-icon' htmlFor='search'>
@@ -30,4 +37,8 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+SearchBar.propTypes = {
+  searchLogs: PropTypes.func.isRequired
+};
+
+export default connect(null, { searchLogs })(SearchBar);

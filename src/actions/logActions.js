@@ -145,7 +145,10 @@ export const searchLogs = text => async dispatch => {
 
     const res = await fetch(`/logs?q=${text}`);
     const data = await res.json();
-
+    /**
+     *  data from server will replace the logs
+     *  rather than filtering existing logs.
+     * */
     dispatch({
       type: SEARCH_LOGS,
       payload: data
